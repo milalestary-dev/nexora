@@ -23,6 +23,12 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('student')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('/tasks', [DashboardController::class, 'createTask'])->name('tasks.create');
+        Route::post('/tasks/{task}/toggle', [DashboardController::class, 'toggleTask'])->name('tasks.toggle');
+        Route::post('/schedules', [DashboardController::class, 'createSchedule'])->name('schedules.create');
+        Route::post('/goals', [DashboardController::class, 'createGoal'])->name('goals.create');
+        Route::post('/goals/{goal}/increment', [DashboardController::class, 'incrementGoal'])->name('goals.increment');
+        Route::post('/pomodoro', [DashboardController::class, 'logPomodoro'])->name('pomodoro.log');
     });
 
     Route::middleware('admin')->group(function () {

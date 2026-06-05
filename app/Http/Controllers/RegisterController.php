@@ -34,6 +34,12 @@ class RegisterController extends Controller
             'timezone' => $request->timezone ?? 'UTC',
         ]);
 
+        \App\Models\Activity::create([
+            'user_id' => $user->id,
+            'action' => 'Mendaftar akun baru',
+            'type' => 'register',
+        ]);
+
         Auth::login($user);
 
         return redirect()->route('dashboard')->with('success', 'Registrasi berhasil! Selamat datang di Nexora.');
