@@ -2,13 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
-    return redirect()->route('register');
+    return redirect()->route('login');
 });
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/dashboard', function () {
     $user = auth()->user();
@@ -94,5 +98,5 @@ Route::get('/dashboard', function () {
 
 Route::get('/logout', function () {
     auth()->logout();
-    return redirect()->route('register');
+    return redirect()->route('login');
 })->name('logout');
