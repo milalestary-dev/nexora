@@ -96,7 +96,4 @@ Route::get('/dashboard', function () {
     ";
 })->middleware('auth')->name('dashboard');
 
-Route::get('/logout', function () {
-    auth()->logout();
-    return redirect()->route('login');
-})->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
