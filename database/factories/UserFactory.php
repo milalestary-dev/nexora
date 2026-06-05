@@ -30,6 +30,10 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role_id' => \App\Models\Role::value('id') ?? \App\Models\Role::firstOrCreate(['name' => 'Student'])->id,
+            'avatar' => null,
+            'bio' => fake()->sentence(),
+            'timezone' => fake()->timezone(),
         ];
     }
 

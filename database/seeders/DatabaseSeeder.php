@@ -13,9 +13,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
 
+        $studentRole = \App\Models\Role::where('name', 'Student')->first();
+
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'role_id' => $studentRole?->id,
         ]);
     }
 }
